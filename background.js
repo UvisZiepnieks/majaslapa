@@ -186,7 +186,7 @@ app.all('/index', function (req, res) {
   con.query("SELECT * FROM users where epasts= " + insert1 + " and parole= " + insert2, function (err, re, fields) {
     if (err) throw err;
     re.forEach(resul => {
-      if (resul.loma < 2) {
+      if (resul.loma == 1) {
         con.query("SELECT * FROM produkti", function (err, result, fields) {
           if (err) throw err;
           res.render(path.join(__dirname, './produkti.html'), { data: { userData: result, lietotajs: re } });
