@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>Pirkuma noformējums</h1>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+    <% if (userData.length !== 0) { %>
+        <%  userData.forEach(function(data, index) { %>
+<form action="http://localhost:8080/confirm" method="POST">
+    <input type="hidden" name="prod_id" value="<%= data.id %>"><br><br>
+    Vārds: <input type="text" name="vards"><br><br>
+    Uzvārds: <input type ="text" name="uzvards"><br><br>
+    epasts: <input type="text" name="epasts"><br><br>
+   <button type="submit">Pirkt</button>
+  </form>
+  <% }); %>
+  <% } else { %>
+      <tr>
+          <td colspan="7">No Data Found</td>
+      </tr>
+      <% } %>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link link type="text/css" rel="stylesheet" href="/styles/style.css" />
+</head>
+
+<body>
+  <script src="js.js">
+    var res = js.results;
+    console.log(res);
+  </script>
+  <% if (userData.length !==0) { %>
+    <% userData.forEach(function(data, index) { %>
+      <h1>
+        <%= data.vards %>
+          <%= data.uzvards %>
+      </h1>
+      <% }); %>
+        <% } else { %>
+          <tr>
+            <td colspan="7">No Data Found</td>
+          </tr>
+          <% } %>
+
+            <% if (userData.length !==0) { %>
+              <% userData.forEach(function(data, index) { %>
+                <div class="form-style-6">
+                  <form action="http://localhost:8080/delete" method="POST">
+                    <input type="hidden" name="idd" value=<%=data.id %>>
+                    <button type="submit" class="btnR"><i class="fa fa-trash"></i></button>
+                  </form>
+                  <form action="http://localhost:8080/update" method="POST">
+                    <input type="hidden" name="id" value=<%=data.id %>><br><br>
+                    Vārds: <input type="text" name="vards" value=<%=data.vards %>><br><br>
+                    Uzvārds: <input type="text" name="uzvards" value=<%=data.uzvards %>><br><br>
+                    e-pasts: <input type="text" name="epasts" value=<%=data.epasts %>><br><br>
+                    parole: <input type="password" name="parole" value=<%=data.parole %>><br><br>
+                    <button type="submit">Send to backend</button>
+                  </form>
+                  <% }); %>
+                    <% } else { %>
+                      <tr>
+                        <td colspan="7">No Data Found</td>
+                      </tr>
+                      <% } %>
+                </div>
+</body>
+
+</html>

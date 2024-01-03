@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link link type="text/css" rel="stylesheet" href="/styles/style.css" />
+    </head>
+    <body>
+        <script src="js.js">
+            var res = js.results;
+            console.log(res);
+        </script>
+        <h1>Lietotāji</h1>
+        <p id="text">Šeit atrodas visi programmas lietotāji</p>
+        <table id="my_table" name="mytable" class="styled-table">
+            <tr>
+                <th>id</th>
+                <th>Vārds</th>
+                <th>Uzvārds</th>
+                <th>epasts</th>
+                <th></th>
+            </tr>
+            <% if (data.userData.length !== 0) { %>
+                <%  data.userData.forEach(function(data, index) { %>
+                  <tr>
+                    <td><%= data.id %></td>
+                    <td><%= data.vards %></td>
+                    <td><%= data.uzvards %></td>
+                    <td><%= data.epasts %></td>
+                    <td><form action="http://localhost:8080/edit" method="POST"><input type="hidden" name="id" value=<%= data.id %>><button type="submit" class="btn"><i class="fa fa-pencil"></i></button></form></td>
+
+                  </tr>
+                <% }); %>
+              <% } else { %>
+                <tr>
+                  <td colspan="7">No Data Found</td>
+                </tr>
+              <% } %>
+        <div class="form-style-6">
+        <form action="http://localhost:8080/insert" method="POST">
+            Vārds: <input type="text" name="vards"><br><br>
+            Uzvārds: <input type ="text" name="uzvards"><br><br>
+            epasts: <input type="text" name="epasts"><br><br>
+            Parole: <input type ="password" name="parole"><br><br>
+            Loma: <input type ="text" name="loma"><br><br>
+           <button type="submit">Send to backend</button>
+          </form>
+        </div>
+    </body>
+</html>
